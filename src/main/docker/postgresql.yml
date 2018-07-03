@@ -1,0 +1,11 @@
+version: '2'
+services:
+    foodfacts-postgresql:
+        image: postgres:10.4
+        volumes:
+            - ~/volumes/foodfacts/postgresql/:/var/lib/postgresql/data/
+        environment:
+            - POSTGRES_USER=foodfacts
+            - POSTGRES_PASSWORD=foodfacts
+        ports:
+            - 5432:5432
