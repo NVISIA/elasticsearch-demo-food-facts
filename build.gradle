@@ -24,17 +24,17 @@ repositories {
 	mavenCentral()
 }
 
+defaultTasks 'bootRun'
+
+springBoot {
+    mainClassName = 'com.nvisia.esfoodfacts.ESFoodFactsApp'
+    buildInfo()
+}
+
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-actuator')
-	compile('org.springframework.boot:spring-boot-starter-data-elasticsearch')
-  compile("org.springframework.boot:spring-boot-starter-logging")
-  compile('org.springframework.boot:spring-boot-starter-data-jpa')
-	compile('org.springframework.boot:spring-boot-starter-data-redis')
-	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+  	compile("org.springframework.boot:spring-boot-starter-logging")
 	compile('org.springframework.boot:spring-boot-starter-web')
-	compile('org.apache.kafka:kafka-streams:1.0.1')
-	compile('org.liquibase:liquibase-core')
-	compile('org.springframework.kafka:spring-kafka')
 	runtime('org.springframework.boot:spring-boot-devtools')
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')

@@ -10,13 +10,7 @@ I added the following dependencies:
 * DevTools
 * Lombok
 * Web
-* Thymeleaf
-* JPA
-* Liquibase
-* Redis
 * Elasticsearch
-* Kafka
-* Kafka Streams
 * Actuator
 
 # Execution
@@ -49,19 +43,5 @@ docker-compose -f src/main/docker/elasticsearch.yml down
 
 ```
 curl http://127.0.0.1:9200/_cat/health
-```
-
-# Running PostgreSQL
-
-Starting:
-
-```
-docker-compose -f src/main/docker/postgresql.yml up -d
-```
-
-Stopping:
-
-```
-docker-compose -f src/main/docker/postgresql.yml down
 ```
 

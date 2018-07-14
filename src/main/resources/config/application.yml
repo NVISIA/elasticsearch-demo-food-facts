@@ -1,0 +1,5 @@
+spring:
+    application:
+        name: ESFoodFacts
+server:
+  port: 8080

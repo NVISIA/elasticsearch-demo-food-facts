@@ -15,7 +15,7 @@ public class ESFoodFactsApp {
 
     private final Environment env;
 
-    public FoodFactsApp(Environment env) {
+    public ESFoodFactsApp(Environment env) {
         this.env = env;
     }
 
