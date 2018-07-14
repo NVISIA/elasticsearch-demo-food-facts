@@ -1,5 +1,16 @@
 spring:
     application:
         name: ESFoodFacts
+    devtools:
+      restart:
+        enabled: true
+      livereload:
+        enabled: true
+
 server:
   port: 8080
+
+foodfacts:
+  elasticsearch:
+    host: localhost
+    port: 9300
