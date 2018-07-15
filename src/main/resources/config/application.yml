@@ -13,4 +13,8 @@ server:
 foodfacts:
   elasticsearch:
     host: localhost
-    port: 9300
+    port: 9200
+  async:
+    corePoolSize: 2
+    maxPoolSize: 50
+    queueCapacity: 10000

@@ -1,23 +1,25 @@
 package com.nvisia.esfoodfacts;
 
+import com.nvisia.esfoodfacts.config.ApplicationProperties;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.core.env.Environment;
 
 import java.net.InetAddress;
 
 @SpringBootApplication
+@EnableConfigurationProperties({ApplicationProperties.class})
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ESFoodFactsApp {
 
     private static final Logger log = LoggerFactory.getLogger(ESFoodFactsApp.class);
 
     private final Environment env;
-
-    public ESFoodFactsApp(Environment env) {
-        this.env = env;
-    }
 
     /**
      * Main method, used to run the application.

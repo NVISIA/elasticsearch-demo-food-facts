@@ -1,7 +1,5 @@
 package com.nvisia.esfoodfacts.web.resource;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import lombok.RequiredArgsConstructor;
 import org.apache.http.entity.ContentType;
 import org.apache.http.nio.entity.NStringEntity;
@@ -16,43 +14,32 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.Collection;
 import java.util.Collections;
 
 @Controller
-@RequestMapping("/api/index")
+@RequestMapping("/api/mapping")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class ESIndexResource {
+public class ESMappingResource {
 
-    private static final Logger log = LoggerFactory.getLogger(ESIndexResource.class);
+    private static final Logger log = LoggerFactory.getLogger(ESMappingResource.class);
 
     private final RestClient restClient;
 
     @RequestMapping(method=RequestMethod.PUT, produces = {"application/json;charset=UTF-8"})
-    public ResponseEntity createIndex() throws IOException {
+    public ResponseEntity createMapping() throws IOException {
         Response response = restClient.performRequest(
-    "PUT",
-    "food_product_index_v1",
-            Collections.emptyMap(),
-            new NStringEntity(
-                new String(
-                    Files.readAllBytes(
-                        new ClassPathResource("es-schema/food_product_index_v1.json").getFile().toPath())),
-                ContentType.APPLICATION_JSON
-            ));
+                "PUT",
+                "food_product_index_v1/_mapping/food_product_v1",
+                Collections.emptyMap(),
+                new NStringEntity(
+                        new String(
+                                Files.readAllBytes(
+                                        new ClassPathResource("es-schema/food_product_v1.json").getFile().toPath())),
+                        ContentType.APPLICATION_JSON
+                ));
         return new ResponseEntity(HttpStatus.valueOf(response.getStatusLine().getStatusCode()));
     }
-
-    @RequestMapping(method=RequestMethod.DELETE, produces = {"application/json;charset=UTF-8"})
-    public ResponseEntity deleteIndex() throws IOException {
-        Response response = restClient.performRequest(
-    "DELETE",
-            "food_product_index_v1", Collections.emptyMap());
-        return new ResponseEntity(HttpStatus.valueOf(response.getStatusLine().getStatusCode()));
-    }
-
 }

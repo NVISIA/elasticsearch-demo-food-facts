@@ -32,9 +32,13 @@ springBoot {
 }
 
 dependencies {
+	compile('com.google.code.gson:gson')
+	compile('org.elasticsearch.client:elasticsearch-rest-client:6.3.0')
 	compile('org.springframework.boot:spring-boot-starter-actuator')
   	compile("org.springframework.boot:spring-boot-starter-logging")
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-aop')
+	annotationProcessor('org.springframework.boot:spring-boot-configuration-processor')
 	runtime('org.springframework.boot:spring-boot-devtools')
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
@@ -43,3 +47,5 @@ dependencies {
 task wrapper(type: Wrapper) {
 	gradleVersion = '4.6'
 }
+
+compileJava.dependsOn(processResources)
