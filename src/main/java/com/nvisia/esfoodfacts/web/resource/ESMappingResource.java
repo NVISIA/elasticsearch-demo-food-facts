@@ -1,5 +1,6 @@
 package com.nvisia.esfoodfacts.web.resource;
 
+import com.nvisia.esfoodfacts.repository.ESRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.http.entity.ContentType;
 import org.apache.http.nio.entity.NStringEntity;
@@ -26,20 +27,10 @@ public class ESMappingResource {
 
     private static final Logger log = LoggerFactory.getLogger(ESMappingResource.class);
 
-    private final RestClient restClient;
+    private final ESRepository esRepository;
 
     @RequestMapping(method=RequestMethod.PUT, produces = {"application/json;charset=UTF-8"})
-    public ResponseEntity createMapping() throws IOException {
-        Response response = restClient.performRequest(
-                "PUT",
-                "food_product_index_v1/_mapping/food_product_v1",
-                Collections.emptyMap(),
-                new NStringEntity(
-                        new String(
-                                Files.readAllBytes(
-                                        new ClassPathResource("es-schema/food_product_v1.json").getFile().toPath())),
-                        ContentType.APPLICATION_JSON
-                ));
-        return new ResponseEntity(HttpStatus.valueOf(response.getStatusLine().getStatusCode()));
+    public ResponseEntity createMapping() {
+        return new ResponseEntity(HttpStatus.valueOf(esRepository.createFoodProductMapping()));
     }
 }
